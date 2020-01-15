@@ -1,1 +1,59 @@
-<p>quiz-container works!</p>
+<form
+  class="formCont"
+  name="form"
+  (ngSubmit)="quizForm.form.valid && submitBtnHandler(quizForm)"
+  #quizForm="ngForm"
+>
+  <div class="card mb-3" *ngFor="let quiz of modifiedData; let i = index">
+    <div
+      [ngClass]="{
+        warning: isMissing && quiz.selectedAnswer == defaultSelectValue,
+        error:
+          !isMissing && isSubmitted && quiz.selectedAnswer != quiz.correctAnswer
+      }"
+    >
+      <h5 class="card-header">Question #{{ quiz?.questionId }}</h5>
+      <div class="card-body">
+        <p class="card-text">
+          {{ quiz?.question }}
+        </p>
+        <select
+          class="btn btn-primary dropdown-toggle"
+          [name]="quiz.questionId"
+          required
+          [(ngModel)]="quiz.selectedAnswer"
+        >
+          <option
+            [value]="option"
+            class="text-uppercase"
+            *ngFor="let option of quiz.options; let i = index"
+            [disabled]="option == defaultSelectValue"
+          >
+            {{ option }}
+          </option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="row btnCont">
+    <div class="col-md-6">
+      <button
+        class="btn btn-primary btn-block btn-round mb-2"
+        id="submitBtn"
+        type="submit"
+      >
+        Submit
+      </button>
+    </div>
+    <div class="col-md-6">
+      <button
+        class="btn btn-danger btn-block btn-round mb-2"
+        type="button"
+        (click)="resetBtnHandler()"
+      >
+        Reset
+      </button>
+    </div>
+  </div>
+</form>

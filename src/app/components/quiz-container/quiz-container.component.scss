@@ -1,0 +1,21 @@
+.warning {
+  border: 1px solid orange;
+}
+
+.error {
+  border: 1px solid red;
+}
+
+.formCont {
+
+  .btnCont {
+    position: sticky;
+    bottom: 0;
+    background: white;
+    padding: 20px;
+  }
+
+  select {
+    width: 100%;
+  }
+}

@@ -1,3 +1,15 @@
-<p>display-container works!</p>
-
-<app-quiz-container></app-quiz-container>
+<div class="container-fluid p-4">
+  <!-- To-do: create a a title section  -->
+  <div class="row">
+    <!-- Quiz Container  -->
+    <div class="col-md-6">
+      <app-quiz-container
+        (accuracyCounts)="getCounts($event)"
+      ></app-quiz-container>
+    </div>
+    <!-- Chart Container -->
+    <div class="col-md-6">
+      <app-chart-container *ngIf="score" [score]="score"></app-chart-container>
+    </div>
+  </div>
+</div>
